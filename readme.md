@@ -8,7 +8,9 @@ This code using SB Admin 2 Template. If you wanna try it, you can import the sql
 - User & Access Management
 - Edit profile & Change Password with e-mail verification
 
-Credits to : 
+I am going to add with some features and re-design the template. See You!
+
+# Credits to : 
 -Mr. Sandhika Galih
 -SB Admin 2 Template
 
