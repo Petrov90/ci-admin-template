@@ -33,7 +33,7 @@ class Auth extends CI_Controller
         // model
         $this->load->model('User_model', 'user');
         $user = $this->user->userCheckLogin($username);
-        
+
         if ($user != null) {
             if ($user['is_active'] == 1) {
                 if (password_verify($password, $user['password'])) {
@@ -124,8 +124,8 @@ class Auth extends CI_Controller
         $config = [
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'faturrahman.m14@gmail.com', // your gmail
-            'smtp_pass' => 'muqiitfatur14', // your password gmail
+            'smtp_user' => 'yourgmail@gmail.com', // your gmail
+            'smtp_pass' => 'password', // your password gmail
             'smtp_port' => 465,
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
@@ -134,7 +134,7 @@ class Auth extends CI_Controller
 
         $this->email->initialize($config);
 
-        $this->email->from('faturrahman.m14@gmail.com', 'Faturrahman Muqiit'); // from('your email', 'Your Name');
+        $this->email->from('yourgmail@gmail.com', 'yourpassword'); // from('your email', 'Your Name');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {
