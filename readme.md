@@ -11,6 +11,6 @@ This code using SB Admin 2 Template. If you wanna try it, you can import the sql
 I am going to add with some features and re-design the template. See You!
 
 # Credits to : 
--Mr. Sandhika Galih
--SB Admin 2 Template
+- Mr. Sandhika Galih
+- SB Admin 2 Template
 
