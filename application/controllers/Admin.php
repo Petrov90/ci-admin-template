@@ -28,7 +28,7 @@ class Admin extends CI_Controller
         $data['title'] = 'Role';
         $data['user'] = $this->user->getUserData();
 
-        $data['role'] = $this->db->get('user_role')->result_array();
+        $data['role'] = $this->user->getUserRoleAll();
 
         $this->form_validation->set_rules('role', 'Role Name', 'required');
 
@@ -62,7 +62,7 @@ class Admin extends CI_Controller
         $data['user'] = $this->user->getUserData();
 
 
-        $data['role'] = $this->db->get_where('user_role', ['id' => $role_id])->row_array();
+        $data['role'] = $this->user->getUserRoleById($role_id);;
 
         $data['menu'] = $this->db->get_where('user_menu', ['id !=' => 1])->result_array();
 
@@ -95,7 +95,7 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Edit Role';
         $data['user'] = $this->user->getUserData();
-        $data['role'] = $this->db->get_where('user_role', ['id' => $role_id])->row_array();
+        $data['role'] = $this->user->getUserRoleById($role_id);;
 
         $this->form_validation->set_rules('role', 'Role Name', 'required');
 
@@ -123,7 +123,7 @@ class Admin extends CI_Controller
 
     public function deleterole($role_id)
     {
-        $role = $this->db->get_where('user_role', ['id' => $role_id])->row_array();
+        $role = $this->user->getUserRoleById($role_id);
 
         $this->db->delete('user_role', ['id' => $role_id]);
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $role['role'] . ' role is deleted!</div>');
