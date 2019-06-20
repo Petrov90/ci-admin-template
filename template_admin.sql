@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2019 at 07:33 AM
+-- Generation Time: Jun 20, 2019 at 06:48 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -32,6 +32,7 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
+  `username` varchar(25) NOT NULL,
   `image` varchar(128) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL,
@@ -43,11 +44,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 'Mohamad Muqiit Faturrahman', 'mmuqiit.f14@gmail.com', '7H.jpg', '$2y$10$mTfO4jnUarsSJHPk8ElqdOOkMd9cJo.whKU/VUtgf0IBh/D0hU0tu', 1, 1, 1560266129),
-(2, 'Fatur', 'faturrahman@gmail.com', 'default.jpg', '$2y$10$MCYPoyKch0CNMcRboZsn5.bom1T5kRGfKwRFzwNhKg87NyVj0zWMC', 2, 1, 1560434464),
-(3, 'Syifaa', 'Ipaa2240@gmail.com', 'default.jpg', '$2y$10$toNUiK/n2LPee1FLIZEha.4ph87tQxBIMwpNTbJ9VcRmGrlEGsPey', 2, 1, 1560692251),
-(4, 'Muqiit', 'fmohamadmuqiit@yahoo.com', 'default.jpg', '$2y$10$FqhMlTiowDjMTwY/3inP4uFdYqTPjcNOvBBcr4aZKPqVZ61o0rsLy', 2, 1, 1560692462);
+INSERT INTO `user` (`id`, `name`, `email`, `username`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
+(1, 'Mohamad Muqiit Faturrahman', 'mmuqiit.f14@gmail.com', 'mmuqiit', '7H.jpg', '$2y$10$mTfO4jnUarsSJHPk8ElqdOOkMd9cJo.whKU/VUtgf0IBh/D0hU0tu', 1, 1, 1560266129),
+(3, 'Syifaa', 'Ipaa2240@gmail.com', 'sipaa', 'default.jpg', '$2y$10$toNUiK/n2LPee1FLIZEha.4ph87tQxBIMwpNTbJ9VcRmGrlEGsPey', 2, 1, 1560692251),
+(5, 'Fatur', 'fmohamadmuqiit@yahoo.com', 'fmuqiit', 'default.jpg', '$2y$10$05h7FBK9WCPMyHuLTaAkXOkIveyM.fWlQksYnjQs.BjwbjixUg.Ty', 2, 1, 1561043938);
 
 -- --------------------------------------------------------
 
@@ -200,7 +200,7 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
@@ -212,19 +212,19 @@ ALTER TABLE `user_access_menu`
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_token`
