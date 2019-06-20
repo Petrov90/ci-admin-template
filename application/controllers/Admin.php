@@ -7,13 +7,14 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('User_model', 'user');
     }
 
     public function index()
     {
         $data['title'] = 'Dashboard';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
+        $data['user'] = $this->user->getUserData();
+        $data['all_user'] = $this->user->getUserDataAll();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -25,7 +26,7 @@ class Admin extends CI_Controller
     public function role()
     {
         $data['title'] = 'Role';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user->getUserData();
 
         $data['role'] = $this->db->get('user_role')->result_array();
 
@@ -58,7 +59,7 @@ class Admin extends CI_Controller
     public function roleaccess($role_id)
     {
         $data['title'] = 'Role Access';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user->getUserData();
 
 
         $data['role'] = $this->db->get_where('user_role', ['id' => $role_id])->row_array();
@@ -93,7 +94,7 @@ class Admin extends CI_Controller
     public function editrole($role_id)
     {
         $data['title'] = 'Edit Role';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user->getUserData();
         $data['role'] = $this->db->get_where('user_role', ['id' => $role_id])->row_array();
 
         $this->form_validation->set_rules('role', 'Role Name', 'required');

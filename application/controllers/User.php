@@ -7,11 +7,13 @@ class User extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('User_model', 'user');
     }
     public function index()
     {
         $data['title'] = 'My Profile';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // model
+        $data['user'] = $this->user->getUserData();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -23,9 +25,12 @@ class User extends CI_Controller
     {
 
         $data['title'] = 'Edit Profile';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // model
+        $data['user'] = $this->user->getUserData();
 
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required');
+
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -34,6 +39,7 @@ class User extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $name = $this->input->post('name');
+            $username = $this->input->post('username');
             $email = $this->input->post('email');
 
             // cek jika gambar diubah
@@ -57,9 +63,10 @@ class User extends CI_Controller
                 }
             }
 
-
-
-            $this->db->set('name', $name);
+            $this->db->set([
+                'name' => $name,
+                'username' => $username
+            ]);
             $this->db->where('email', $email);
             $this->db->update('user');
 
@@ -71,7 +78,8 @@ class User extends CI_Controller
     public function changepass()
     {
         $data['title'] = 'Change Password';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // model
+        $data['user'] = $this->user->getUserData();
 
         $this->form_validation->set_rules('current_pass', 'Current Password', 'trim|required');
         $this->form_validation->set_rules('new_pass1', 'New Password', 'trim|required|min_length[5]|matches[new_pass2]');

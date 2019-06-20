@@ -25,6 +25,17 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-10">
+                    <input type="text" name="username" id="username" class="form-control" value="<?= $user['username']; ?>">
+                    <?= form_error(
+                        'username',
+                        '<small class="text-danger pl-3">',
+                        '</small>'
+                    ); ?>
+                </div>
+            </div>
+            <div class="form-group row">
                 <div class="col-sm-2">Picture</div>
                 <div class="col-sm-10">
                     <div class="row">

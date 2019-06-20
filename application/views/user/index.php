@@ -16,11 +16,14 @@
             </div>
             <div class="col-lg-8">
                 <div class="card-body">
-                    <div class="card-title">
-                        <?= $user['name']; ?>
-                    </div>
                     <p class="card-text">
-                        <?= $user['email']; ?>
+                        Full Name : <?= $user['name']; ?>
+                    </p>
+                    <p class="card-text">
+                        Email : <?= $user['email']; ?>
+                    </p>
+                    <p class="card-text">
+                        Username : <?= $user['username']; ?>
                     </p>
                     <p class="card-text">
                         <small class="text-muted"> Member since <?= date('d F Y', $user['date_created']); ?>
