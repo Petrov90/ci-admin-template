@@ -15,20 +15,6 @@ class User_model extends CI_Model
         $query = $this->db->get('user');
         return $query->result_array();
     }
-    public function getUserRoleById($role_id)
-    {
-        return $this->db->get_where('user_role', ['id' => $role_id])->row_array();
-    }
-    public function getUserRoleAll()
-    {
-        return $this->db->get('user_role')->result_array();
-    }
-
-    // User Menu
-    public function getUserMenuAll()
-    {
-        return $this->db->get_where('user_menu', ['id !=' => 1])->result_array();
-    }
 
     // Login
     public function userCheckLogin($username)

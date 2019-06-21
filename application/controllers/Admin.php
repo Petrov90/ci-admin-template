@@ -8,6 +8,8 @@ class Admin extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('User_model', 'user');
+        $this->load->model('Menu_model', 'menu');
+        $this->load->model('Admin_model', 'admin');
     }
 
     public function index()
@@ -16,6 +18,9 @@ class Admin extends CI_Controller
         $data['user'] = $this->user->getUserData();
         $data['all_user'] = $this->user->getUserDataAll();
 
+        if ($this->input->post('keyword')) {
+            $data['all_user']  = $this->admin->searchUserData();
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -28,7 +33,7 @@ class Admin extends CI_Controller
         $data['title'] = 'Role';
         $data['user'] = $this->user->getUserData();
 
-        $data['role'] = $this->user->getUserRoleAll();
+        $data['role'] = $this->admin->getUserRoleAll();
 
         $this->form_validation->set_rules('role', 'Role Name', 'required');
 
@@ -62,9 +67,9 @@ class Admin extends CI_Controller
         $data['user'] = $this->user->getUserData();
 
 
-        $data['role'] = $this->user->getUserRoleById($role_id);;
+        $data['role'] = $this->admin->getUserRoleById($role_id);;
 
-        $data['menu'] = $this->db->get_where('user_menu', ['id !=' => 1])->result_array();
+        $data['menu'] = $this->menu->getUserMenuAll();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -95,7 +100,7 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Edit Role';
         $data['user'] = $this->user->getUserData();
-        $data['role'] = $this->user->getUserRoleById($role_id);;
+        $data['role'] = $this->admin->getUserRoleById($role_id);;
 
         $this->form_validation->set_rules('role', 'Role Name', 'required');
 
@@ -123,7 +128,7 @@ class Admin extends CI_Controller
 
     public function deleterole($role_id)
     {
-        $role = $this->user->getUserRoleById($role_id);
+        $role = $this->admin->getUserRoleById($role_id);
 
         $this->db->delete('user_role', ['id' => $role_id]);
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $role['role'] . ' role is deleted!</div>');

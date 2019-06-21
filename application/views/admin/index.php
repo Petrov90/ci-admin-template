@@ -5,7 +5,26 @@
     <h1 class="h2 mb-4 text-gray-800"><?= $title; ?></h1>
 
     <h2 class="h3 mb-4">Data User</h2>
+
+    <div class="row mt-3 mb-3">
+        <div class="col-md-6">
+            <form action="" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cari data user.." name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="row">
+        <?php if (empty($all_user)) : ?>
+            <div class="alert alert-danger" role="alert">
+                Data User is not found!
+            </div>
+        <?php endif; ?>
         <?php foreach ($all_user as $users) : ?>
             <div class="card mb-3 col-lg-6">
                 <div class="row no-gutters">
