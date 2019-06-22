@@ -11,7 +11,6 @@ class User_model extends CI_Model
     }
     public function getUserDataAll()
     {
-        $this->db->select('name, email, username, image, date_created');
         $query = $this->db->get('user');
         return $query->result_array();
     }
